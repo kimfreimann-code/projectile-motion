@@ -459,6 +459,79 @@ input[type="range"]:focus-visible {
   background: #edf3eb;
 }
 
+.tasks-panel {
+  margin-top: 19px;
+  padding: 23px 24px 24px;
+  border: 1px solid #e8ece6;
+  border-radius: 15px;
+  background: var(--paper);
+  box-shadow: 0 12px 38px #21372b0a;
+}
+
+.tasks-heading {
+  margin-bottom: 17px;
+}
+
+.tasks-heading .eyebrow {
+  margin-bottom: 4px;
+}
+
+.tasks-heading h2 {
+  margin-bottom: 5px;
+}
+
+.tasks-heading > p:last-child {
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.task-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: student-task;
+}
+
+.task-list li {
+  position: relative;
+  min-width: 0;
+  padding: 16px 16px 15px 50px;
+  border: 1px solid #edf0eb;
+  border-radius: 11px;
+  background: #fbfcfa;
+  counter-increment: student-task;
+}
+
+.task-list li::before {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  color: var(--green);
+  content: counter(student-task, decimal-leading-zero);
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.task-list h3 {
+  margin: 0 0 5px;
+  font-family: "Manrope", sans-serif;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+}
+
+.task-list p {
+  margin: 0;
+  color: #74817b;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
 .learning-icon {
   display: grid;
   flex: 0 0 33px;
@@ -516,6 +589,10 @@ input[type="range"]:focus-visible {
     border-left: 0;
   }
 
+  .tasks-panel {
+    padding: 21px 18px;
+  }
+
   .controls-hint {
     margin-bottom: 22px;
   }
@@ -563,6 +640,10 @@ input[type="range"]:focus-visible {
 
   .learning-panel {
     padding: 18px 16px;
+  }
+
+  .task-list {
+    grid-template-columns: 1fr;
   }
 
   .page-footer {

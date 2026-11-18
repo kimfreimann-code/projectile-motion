@@ -16,7 +16,7 @@ En interaktiv simulering av kaströrelse för gymnasiefysik. Bollen startar och 
 ## Ändra fysik och undervisningstext
 
 - Ändra tyngdaccelerationen, startvärdena och reglagens gränser i [`js/physics.js`](js/physics.js). Beräkningarna för flygtid, räckvidd, höjd och position finns i samma fil.
-- Ändra introduktion, reflektionsfråga, förklaring och modellantagande i [`js/content.js`](js/content.js).
+- Ändra introduktion, elevuppgifter, reflektionsfråga, förklaring och modellantagande i [`js/content.js`](js/content.js).
 - Sidans innehåll och struktur finns i `index.html`, och utseendet i `styles.css`.
 
 Fysikmodellen använder

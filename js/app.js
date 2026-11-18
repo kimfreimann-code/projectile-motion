@@ -9,6 +9,7 @@
     intro: document.querySelector("#intro"),
     lessonTitle: document.querySelector("#lesson-title"),
     lessonText: document.querySelector("#lesson-text"),
+    studentTasks: document.querySelector("#student-tasks"),
     assumption: document.querySelector("#assumption-note"),
     gravityNote: document.querySelector("#gravity-note"),
     speed: document.querySelector("#speed"),
@@ -56,6 +57,18 @@
     Object.entries(attributes).forEach(([key, value]) => element.setAttribute(key, value));
     if (text !== undefined) element.textContent = text;
     return element;
+  }
+
+  function renderStudentTasks() {
+    content.studentTasks.forEach((task) => {
+      const item = document.createElement("li");
+      const title = document.createElement("h3");
+      const text = document.createElement("p");
+      title.textContent = task.title;
+      text.textContent = task.text;
+      item.append(title, text);
+      elements.studentTasks.append(item);
+    });
   }
 
   function drawAxes(xMax, yMax, groundY) {
@@ -229,6 +242,7 @@
   elements.intro.textContent = content.intro;
   elements.lessonTitle.textContent = content.lessonTitle;
   elements.lessonText.textContent = content.lessonText;
+  renderStudentTasks();
   elements.speed.min = physics.speedLimits.min;
   elements.speed.max = physics.speedLimits.max;
   elements.speed.step = physics.speedLimits.step;
