@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f2">
+    <title>Kaströrelse – fysiksimulering</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/physics.js" defer></script>
+    <script src="js/content.js" defer></script>
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <header class="page-header">
+        <p class="eyebrow">Fysik · rörelse i två dimensioner</p>
+        <h1>Kaströrelse</h1>
+        <p class="intro" id="intro"></p>
+      </header>
+
+      <section class="workspace" aria-label="Kaströrelsesimulering">
+        <div class="visual-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Banan</p>
+              <h2>Så rör sig bollen</h2>
+            </div>
+            <span class="motion-badge"><span class="status-dot"></span><span id="motion-status">Redo</span></span>
+          </div>
+
+          <div class="chart-wrap">
+            <svg id="trajectory" viewBox="0 0 760 410" role="img" aria-labelledby="chart-title chart-desc">
+              <title id="chart-title">Bollens kastbana</title>
+              <desc id="chart-desc">En parabolisk bana från startpunkten tillbaka till samma höjd.</desc>
+              <g id="chart-grid"></g>
+              <g id="chart-labels"></g>
+              <line id="ground-line" class="ground-line"></line>
+              <path id="trajectory-path" class="trajectory-path"></path>
+              <circle id="start-point" class="endpoint" r="5"></circle>
+              <circle id="landing-point" class="endpoint" r="5"></circle>
+              <circle id="ball" class="ball" r="9"></circle>
+            </svg>
+          </div>
+          <div class="chart-legend">
+            <span><i class="legend-line"></i> Bollens bana</span>
+            <span><i class="legend-dot"></i> Start och landning</span>
+          </div>
+
+          <div class="results" aria-live="polite">
+            <article class="result-card">
+              <p id="flight-time-label">Flygtid</p>
+              <strong><span id="flight-time">0,00</span><small> s</small></strong>
+              <span id="flight-time-note" class="result-note">tills bollen landar</span>
+            </article>
+            <article class="result-card">
+              <p id="range-label">Räckvidd</p>
+              <strong><span id="range">0,00</span><small> m</small></strong>
+              <span id="range-note" class="result-note">horisontellt avstånd</span>
+            </article>
+            <article class="result-card">
+              <p>Högsta höjd</p>
+              <strong><span id="max-height">0,00</span><small> m</small></strong>
+              <span class="result-note">över startpunkten</span>
+            </article>
+          </div>
+          <button id="play-button" class="play-button" type="button">
+            <span aria-hidden="true">▶</span>
+            <span>Spela rörelsen</span>
+          </button>
+        </div>
+
+        <aside class="controls-panel">
+          <p class="eyebrow">Ändra kastet</p>
+          <h2>Vad händer om …?</h2>
+          <p class="controls-hint">Dra i reglagen och följ hur banan och resultaten förändras.</p>
+
+          <div class="control-group">
+            <div class="control-label">
+              <label for="speed">Begynnelsehastighet</label>
+              <output id="speed-output" for="speed">20 m/s</output>
+            </div>
+            <input id="speed" type="range" min="5" max="40" step="1" value="20">
+            <div class="range-ends"><span>5 m/s</span><span>40 m/s</span></div>
+          </div>
+
+          <div class="control-group">
+            <div class="control-label">
+              <label for="angle">Kastvinkel</label>
+              <output id="angle-output" for="angle">45°</output>
+            </div>
+            <input id="angle" type="range" min="0" max="90" step="1" value="45">
+            <div class="range-ends"><span>0°</span><span>90°</span></div>
+          </div>
+
+          <div class="equation-card">
+            <p class="equation-title" id="equation-title">Samband</p>
+            <div id="projectile-equations">
+              <p class="equation">t<sub>flykt</sub> = <span class="equation-fraction"><span>2v₀ sin θ</span><span>g</span></span></p>
+              <p class="equation">R = <span class="equation-fraction"><span>v₀² sin(2θ)</span><span>g</span></span></p>
+            </div>
+            <div id="rolling-equations" hidden>
+              <p class="equation">t<sub>rull</sub> = <span class="equation-fraction"><span>v₀</span><span>μᵣg</span></span></p>
+              <p class="equation">R<sub>rull</sub> = <span class="equation-fraction"><span>v₀²</span><span>2μᵣg</span></span></p>
+            </div>
+            <p class="equation-note" id="gravity-note"></p>
+          </div>
+
+          <button id="reset-button" class="reset-button" type="button">Återställ till startvärden</button>
+        </aside>
+      </section>
+
+      <section class="learning-panel">
+        <div class="learning-icon" aria-hidden="true">↗</div>
+        <div>
+          <p class="eyebrow">Tänk efter</p>
+          <h2 id="lesson-title"></h2>
+          <p id="lesson-text"></p>
+        </div>
+      </section>
+
+      <footer class="page-footer">
+        <span id="assumption-note"></span>
+        <span>Modell för undervisning</span>
+      </footer>
+    </main>
+  </body>
+</html>
